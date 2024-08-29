@@ -8,6 +8,9 @@ from garbage_type import GarbageType
 
 pygame.init()
 
+background_image = pygame.image.load("images/background_2.webp")
+background_image = pygame.transform.scale(background_image, (config.WIDTH, config.HEIGHT))
+
 DISPLAY = pygame.display.set_mode([config.WIDTH, config.HEIGHT])
 FONT = pygame.font.SysFont("Cute", 25)
 
@@ -18,7 +21,7 @@ time = 0
 count = 0
 points = 0
 
-garbage_can = GarbageCan(GarbageType.BLACK)
+garbage_can = GarbageCan(GarbageType.WHITE)
 garbages: list[Garbage] = []
 
 
@@ -41,7 +44,7 @@ def gen_garbage():
 
 while playing:
 
-    DISPLAY.fill("black")
+    DISPLAY.blit(background_image, (0, 0))
 
     time += clock.tick(config.FPS)
     if time > config.GEN_GARBAGE_TIME and count < config.COUNT_GEN_GARBAGE:
